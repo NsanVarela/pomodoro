@@ -76,6 +76,7 @@ function startCountdown(minutesChosen) {
     }, 1000);
 }
 
+// Annule la séance de mise au point
 function renderBackToStart() {
     hideElements(countdownContainer, cancelContainer, videoContainer, takeBreak);
     unhideElements(description, selectionContainer, timeButtonsContainer);
