@@ -65,7 +65,7 @@ function startCountdown(minutesChosen) {
         // Si le temps atteint 0, le compte à rebours s'arrête et la vidéo est rendue.
         if (totalTimeInSeconds < 0) {
             clearInterval(setCountDownInterval);
-            // renderVideo();
+            renderVideo();
         }
 
         // Si le bouton d'annulation est cliqué, le rendu revient au début.
@@ -80,4 +80,23 @@ function startCountdown(minutesChosen) {
 function renderBackToStart() {
     hideElements(countdownContainer, cancelContainer, videoContainer, takeBreak);
     unhideElements(description, selectionContainer, timeButtonsContainer);
+}
+
+function renderVideo() {
+    hideElements(countdownContainer, cancelContainer);
+    unhideElements(videoContainer, selectionContainer, takeBreak);
+
+    // Prenez l'URL d'une vidéo aléatoire et affichez-la en mode lecture automatique.
+    const songURLs = [
+        "https://www.youtube.com/embed/4Z-P7qOFcDk?rel=0&start=137&autoplay=1",
+        "https://www.youtube.com/embed/KybAvaM3b90?rel=0&start=8&autoplay=1",
+        "https://www.youtube.com/embed/W5HIisdWzvY?rel=0&start=39&autoplay=1",
+        "https://www.youtube.com/embed/-H2Bjyw6AS8?rel=0&start=93&autoplay=1",
+    ];
+
+    const randomIdx = Math.floor(Math.random() * songURLs.length);
+
+    videoContainer.innerHTML = `
+    <iframe width="560" height="315" src=${songURLs[randomIdx]} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  `;
 }
